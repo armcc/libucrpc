@@ -3,8 +3,7 @@ AM_CPPFLAGS = -I$(top_srcdir)/include -include compat.h -D_GNU_SOURCE -Wall
 
 AM_CPPFLAGS += -D__UCLIBC_HAS_RPC__ \
                -D__UCLIBC_HAS_REENTRANT_RPC__ \
-               -D__UCLIBC_HAS_THREADS__ \
-               -D__UCLIBC_HAS_IPV6__
+               -D__UCLIBC_HAS_THREADS__
 
 noinst_HEADERS = compat.h errqueue.h rpc_private.h
 
