@@ -121,7 +121,7 @@ int rcmd(char **ahost, u_short rport, const char *locuser, const char *remuser,
 	while (gethostbyname_r (*ahost, &hostbuf, tmphstbuf,
 		    hstbuflen, &hp, &herr) != 0 || hp == NULL)
 	{
-	    if (herr != NETDB_INTERNAL || errno != ERANGE)
+	    if (herr != TRY_AGAIN || errno != ERANGE)
 	    {
 		__set_h_errno (herr);
 		free(tmphstbuf);
@@ -325,7 +325,7 @@ int ruserok(const char *rhost, int superuser, const char *ruser,
 	while (gethostbyname_r (rhost, &hostbuf, buffer,
 		    buflen, &hp, &herr) != 0 || hp == NULL)
 	{
-	    if (herr != NETDB_INTERNAL || errno != ERANGE) {
+	    if (herr != TRY_AGAIN || errno != ERANGE) {
 		free(buffer);
 		return -1;
 	    } else

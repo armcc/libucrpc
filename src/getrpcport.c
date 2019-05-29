@@ -59,7 +59,7 @@ getrpcport (const char *host, u_long prognum, u_long versnum, u_int proto)
   buffer = alloca (buflen);
   while (gethostbyname_r (host, &hostbuf, buffer, buflen, &hp, &herr) != 0
 	 || hp == NULL)
-    if (herr != NETDB_INTERNAL || errno != ERANGE)
+    if (herr != TRY_AGAIN || errno != ERANGE)
       return 0;
     else
       {

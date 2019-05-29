@@ -85,7 +85,7 @@ clnt_create (const char *hostname, u_long prog, u_long vers,
   while (gethostbyname_r (hostname, &hostbuf, hsttmpbuf, hstbuflen,
 			    &h, &herr) != 0
 	 || h == NULL)
-    if (herr != NETDB_INTERNAL || errno != ERANGE)
+    if (herr != TRY_AGAIN || errno != ERANGE)
       {
 	get_rpc_createerr().cf_stat = RPC_UNKNOWNHOST;
 	return NULL;
