@@ -28,7 +28,6 @@
 static pthread_mutex_t mylock = PTHREAD_MUTEX_INITIALIZER;
 
 static int is_initialized;
-static struct drand48_data __rpc_lrand48_data;
 
 u_long _create_xid (void)
 {
@@ -41,11 +40,11 @@ u_long _create_xid (void)
       struct timeval now;
 
       gettimeofday (&now, (struct timezone *) 0);
-      srand48_r (now.tv_sec ^ now.tv_usec, &__rpc_lrand48_data);
+      srand48 (now.tv_sec ^ now.tv_usec);
       is_initialized = 1;
     }
 
-  lrand48_r (&__rpc_lrand48_data, &res);
+  res = lrand48();
 
   pthread_mutex_unlock(&mylock);
 
