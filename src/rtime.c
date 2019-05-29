@@ -55,6 +55,9 @@ static char sccsid[] = "@(#)rtime.c	2.2 88/08/10 4.0 RPCSRC; from 1.8 88/02/08 S
 #include <errno.h>
 #include <netinet/in.h>
 
+#ifndef IPPORT_TIMESERVER
+#define IPPORT_TIMESERVER 37
+#endif
 
 #define NYEARS	(u_long)(1970 - 1900)
 #define TOFFSET (u_long)(60*60*24*(365*NYEARS + (NYEARS/4)))
