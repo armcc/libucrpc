@@ -19,6 +19,22 @@
 #include <rpc/types.h>
 #include <rpc/xdr.h>
 
+#ifndef strong_alias_untyped
+
+/* Define ALIASNAME as a strong alias for NAME.  */
+# define strong_alias(name, aliasname) _strong_alias(name, aliasname)
+# define _strong_alias(name, aliasname) \
+  extern __typeof (name) aliasname __attribute__ ((alias (#name)));
+
+/* Same, but does not check for type match. Use sparingly.
+   Example: strong_alias(stat,stat64) may fail, this one works: */
+# define strong_alias_untyped(name, aliasname) \
+  _strong_alias_untyped(name, aliasname)
+# define _strong_alias_untyped(name, aliasname) \
+  extern __typeof (aliasname) aliasname __attribute__ ((alias (#name)));
+
+#endif
+
 /* XDR 64bit integers */
 bool_t
 xdr_int64_t (XDR *xdrs, int64_t *ip)
