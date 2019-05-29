@@ -47,7 +47,9 @@
 #define RPC_MSG_VERSION		((u_long) 2)
 #define RPC_SERVICE_PORT	((u_short) 2048)
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*
  * Bottom up definition of an rpc message.
@@ -221,6 +223,8 @@ extern bool_t	xdr_rejected_reply(XDR *__xdrs, struct rejected_reply *__rr);
 libc_hidden_proto(xdr_rejected_reply)
 #endif
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* rpc/rpc_msg.h */

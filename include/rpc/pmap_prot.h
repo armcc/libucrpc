@@ -42,7 +42,9 @@
 
 #include <rpc/xdr.h>
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /* The following procedures are supported by the protocol:
  *
@@ -105,6 +107,8 @@ struct pmaplist {
 extern bool_t xdr_pmaplist (XDR *__xdrs, struct pmaplist **__rp) __THROW;
 libc_hidden_proto(xdr_pmaplist)
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* rpc/pmap_prot.h */

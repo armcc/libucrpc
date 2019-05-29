@@ -38,7 +38,9 @@
 
 #include <features.h>
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define DES_MAXDATA 8192	/* max bytes encrypted in one call */
 #define DES_DIRMASK (1 << 0)
@@ -92,6 +94,8 @@ extern int ecb_crypt (char *__key, char *__buf, unsigned __len,
  */
 extern void des_setparity (char *__key) __THROW;
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #endif

@@ -67,7 +67,9 @@
 /* routines for parsing /etc/rpc */
 #include <rpc/netdb.h>		/* structures and routines to parse /etc/rpc */
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /* Global variables, protected for multi-threaded applications.  */
 extern fd_set *__rpc_thread_svc_fdset (void) __attribute__ ((__const__));
@@ -96,6 +98,8 @@ extern int *__rpc_thread_svc_max_pollfd (void) __attribute__ ((__const__));
 libc_hidden_proto(__rpc_thread_svc_max_pollfd)
 #define svc_max_pollfd (*__rpc_thread_svc_max_pollfd ())
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* rpc/rpc.h */

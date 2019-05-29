@@ -21,7 +21,9 @@
 #include <sys/cdefs.h>
 #include <rpc/auth.h>
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #if 0
 /* There are two kinds of "names": fullnames and nicknames */
@@ -109,7 +111,9 @@ extern int getsecretkey (const char *__name, char *__key,
 extern int rtime (struct sockaddr_in *__addrp, struct rpc_timeval *__timep,
 		  struct rpc_timeval *__timeout) __THROW;
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 
 #endif /* rpc/auth_des.h */

@@ -43,7 +43,9 @@
 #include <rpc/auth.h>
 #include <sys/un.h>
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*
  * Rpc calls return an enum clnt_stat.  This should be looked at more,
@@ -428,6 +430,8 @@ extern void get_myaddress (struct sockaddr_in *) __THROW;
 #define UDPMSGSIZE	8800	/* rpc imposed limit on udp msg size */
 #define RPCSMALLMSGSIZE	400	/* a more reasonable packet size */
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* rpc/clnt.h */

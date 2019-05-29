@@ -43,7 +43,9 @@
 /* We need FILE.  */
 #include <stdio.h>
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*
  * XDR provides a conventional way for converting between C data
@@ -400,6 +402,8 @@ libc_hidden_proto(xdrrec_eof)
 /* free memory buffers for xdr */
 extern void xdr_free (xdrproc_t __proc, char *__objp) __THROW;
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* rpc/xdr.h */

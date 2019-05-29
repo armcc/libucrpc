@@ -44,7 +44,9 @@
 #include <features.h>
 #include <rpc/xdr.h>
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #define MAX_AUTH_BYTES	400
 #define MAXNETNAMELEN	255	/* maximum length of network user's name */
@@ -220,6 +222,8 @@ extern int key_get_conv (char *, des_block *);
 extern bool_t xdr_opaque_auth (XDR *, struct opaque_auth *) __THROW;
 libc_hidden_proto(xdr_opaque_auth)
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* rpc/auth.h */

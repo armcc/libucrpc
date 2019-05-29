@@ -39,7 +39,9 @@
 #include <features.h>
 #include <rpc/rpc_msg.h>
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*
  * This interface must manage two items concerning remote procedure calling:
@@ -325,6 +327,8 @@ extern SVCXPRT *svcunix_create (int __sock, u_int __sendsize, u_int __recvsize,
 				char *__path) __THROW;
 
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* rpc/svc.h */

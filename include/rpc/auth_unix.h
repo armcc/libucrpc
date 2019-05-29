@@ -51,7 +51,9 @@
 #include <rpc/auth.h>
 #include <rpc/xdr.h>
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /* The machine name is part of a credential; it may not exceed 255 bytes */
 #define MAX_MACHINE_NAME 255
@@ -86,6 +88,8 @@ struct short_hand_verf
     struct opaque_auth new_cred;
   };
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* rpc/auth_unix.h */

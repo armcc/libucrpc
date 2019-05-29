@@ -43,7 +43,9 @@
 #include <rpc/xdr.h>
 #include <rpc/clnt.h>
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 typedef bool_t (*resultproc_t) (caddr_t resp, struct sockaddr_in *raddr);
 
@@ -96,6 +98,8 @@ extern u_short pmap_getport (struct sockaddr_in *__address,
      __THROW;
 libc_hidden_proto(pmap_getport)
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* rpc/pmap_clnt.h */

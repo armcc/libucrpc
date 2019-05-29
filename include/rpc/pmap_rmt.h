@@ -43,7 +43,9 @@
 #include <rpc/types.h>
 #include <rpc/xdr.h>
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 struct rmtcallargs {
 	u_long prog, vers, proc, arglen;
@@ -66,6 +68,8 @@ struct rmtcallres {
 extern bool_t xdr_rmtcallres (XDR *__xdrs, struct rmtcallres *__crp) __THROW;
 libc_hidden_proto(xdr_rmtcallres)
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* rpc/pmap_rmt.h */

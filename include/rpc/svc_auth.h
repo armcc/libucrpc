@@ -41,7 +41,9 @@
 #include <features.h>
 #include <rpc/svc.h>
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*
  * Server side authenticator
@@ -50,6 +52,8 @@ extern enum auth_stat _authenticate (struct svc_req *__rqst,
 				     struct rpc_msg *__msg) __THROW;
 libc_hidden_proto(_authenticate)
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* rpc/svc_auth.h */

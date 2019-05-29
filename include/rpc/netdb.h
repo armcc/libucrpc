@@ -41,7 +41,9 @@
 #define __need_size_t
 #include <stddef.h>
 
-__BEGIN_DECLS
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 struct rpcent
 {
@@ -74,6 +76,8 @@ extern int getrpcent_r (struct rpcent *__result_buf, char *__buffer,
 			size_t __buflen, struct rpcent **__result) __THROW;
 #endif
 
-__END_DECLS
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* rpc/netdb.h */
