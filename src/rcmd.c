@@ -90,6 +90,9 @@ static char sccsid[] = "@(#)rcmd.c	8.3 (Berkeley) 3/26/94";
 #include "../../signal/sigblock.c"
 #include "../../signal/sigsetmask.c"
 
+#ifndef _PATH_HEQUIV
+#define _PATH_HEQUIV "/etc/hosts.equiv"
+#endif
 
 /* some forward declarations */
 static int __ivaliduser2(FILE *hostf, uint32_t raddr,
