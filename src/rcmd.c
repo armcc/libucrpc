@@ -92,9 +92,9 @@ static char sccsid[] = "@(#)rcmd.c	8.3 (Berkeley) 3/26/94";
 
 
 /* some forward declarations */
-static int __ivaliduser2(FILE *hostf, u_int32_t raddr,
+static int __ivaliduser2(FILE *hostf, uint32_t raddr,
 			 const char *luser, const char *ruser, const char *rhost);
-static int iruserok2 (u_int32_t raddr, int superuser, const char *ruser,
+static int iruserok2 (uint32_t raddr, int superuser, const char *ruser,
 		      const char *luser, const char *rhost);
 
 
@@ -311,7 +311,7 @@ int ruserok(const char *rhost, int superuser, const char *ruser,
 			const char *luser)
 {
         struct hostent *hp;
-	u_int32_t addr;
+	uint32_t addr;
 	char **ap;
 #ifdef __UCLIBC_HAS_REENTRANT_RPC__
 	size_t buflen;
@@ -405,7 +405,7 @@ iruserfopen (const char *file, uid_t okuser)
  * Returns 0 if ok, -1 if not ok.
  */
 static int
-iruserok2 (u_int32_t raddr, int superuser, const char *ruser, const char *luser,
+iruserok2 (uint32_t raddr, int superuser, const char *ruser, const char *luser,
 		   const char *rhost)
 {
 	FILE *hostf = NULL;
@@ -470,8 +470,8 @@ iruserok2 (u_int32_t raddr, int superuser, const char *ruser, const char *luser,
 }
 
 /* This is the exported version.  */
-int iruserok (u_int32_t raddr, int superuser, const char * ruser, const char * luser);
-int iruserok (u_int32_t raddr, int superuser, const char * ruser, const char * luser)
+int iruserok (uint32_t raddr, int superuser, const char * ruser, const char * luser);
+int iruserok (uint32_t raddr, int superuser, const char * ruser, const char * luser)
 {
 	return iruserok2 (raddr, superuser, ruser, luser, "-");
 }
@@ -489,9 +489,9 @@ int iruserok (u_int32_t raddr, int superuser, const char * ruser, const char * l
  * Returns 0 if ok, -1 if not ok.
  */
 int
-__ivaliduser(FILE *hostf, u_int32_t raddr, const char *luser, const char *ruser);
+__ivaliduser(FILE *hostf, uint32_t raddr, const char *luser, const char *ruser);
 int
-__ivaliduser(FILE *hostf, u_int32_t raddr, const char *luser, const char *ruser)
+__ivaliduser(FILE *hostf, uint32_t raddr, const char *luser, const char *ruser)
 {
 	return __ivaliduser2(hostf, raddr, luser, ruser, "-");
 }
@@ -499,10 +499,10 @@ __ivaliduser(FILE *hostf, u_int32_t raddr, const char *luser, const char *ruser)
 
 /* Returns 1 on positive match, 0 on no match, -1 on negative match.  */
 static int
-__icheckhost (u_int32_t raddr, char *lhost, const char *rhost)
+__icheckhost (uint32_t raddr, char *lhost, const char *rhost)
 {
 	struct hostent *hp;
-	u_int32_t laddr;
+	uint32_t laddr;
 	int negate=1;    /* Multiply return with this to get -1 instead of 1 */
 	char **pp;
 
@@ -557,7 +557,7 @@ __icheckhost (u_int32_t raddr, char *lhost, const char *rhost)
 
 	/* Spin through ip addresses. */
 	for (pp = hp->h_addr_list; *pp; ++pp)
-		if (!memcmp (&raddr, *pp, sizeof (u_int32_t)))
+		if (!memcmp (&raddr, *pp, sizeof (uint32_t)))
 			return negate;
 
 	/* No match. */
@@ -612,7 +612,7 @@ __isempty(char *p)
  * Returns 0 if positive match, -1 if _not_ ok.
  */
 static int
-__ivaliduser2(FILE *hostf, u_int32_t raddr,	const char *luser,
+__ivaliduser2(FILE *hostf, uint32_t raddr,	const char *luser,
 			  const char *ruser, const char *rhost)
 {
     register const char *user;

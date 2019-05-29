@@ -209,7 +209,7 @@ clntunix_call (CLIENT *h, u_long proc, xdrproc_t xdr_args, caddr_t args_ptr,
   XDR *xdrs = &(ct->ct_xdrs);
   struct rpc_msg reply_msg;
   u_long x_id;
-  u_int32_t *msg_x_id = (u_int32_t *) (ct->ct_mcall);	/* yuk */
+  uint32_t *msg_x_id = (uint32_t *) (ct->ct_mcall);	/* yuk */
   bool_t shipnow;
   int refreshes = 2;
 

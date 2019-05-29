@@ -441,8 +441,8 @@ libc_hidden_def(svc_getreq_common)
 void
 svc_getreqset (fd_set *readfds)
 {
-  register u_int32_t mask;
-  register u_int32_t *maskp;
+  register uint32_t mask;
+  register uint32_t *maskp;
   register int setsize;
   register int sock;
   register int bit;
@@ -450,7 +450,7 @@ svc_getreqset (fd_set *readfds)
   setsize = _rpc_dtablesize ();
   if (setsize > FD_SETSIZE)
     setsize = FD_SETSIZE;
-  maskp = (u_int32_t *) readfds->fds_bits;
+  maskp = (uint32_t *) readfds->fds_bits;
   for (sock = 0; sock < setsize; sock += 32)
     for (mask = *maskp++; (bit = ffs (mask)); mask ^= (1 << (bit - 1)))
       svc_getreq_common (sock + bit - 1);
