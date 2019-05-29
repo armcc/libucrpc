@@ -66,10 +66,10 @@ struct authunix_parms
   {
     u_long aup_time;
     char *aup_machname;
-    __uid_t aup_uid;
-    __gid_t aup_gid;
+    uid_t aup_uid;
+    gid_t aup_gid;
     u_int aup_len;
-    __gid_t *aup_gids;
+    gid_t *aup_gids;
   };
 
 extern bool_t xdr_authunix_parms (XDR *__xdrs, struct authunix_parms *__p)

@@ -162,8 +162,8 @@ extern struct opaque_auth _null_auth;
  *	int len;
  *	int *aup_gids;
  */
-extern AUTH *authunix_create (char *__machname, __uid_t __uid, __gid_t __gid,
-			      int __len, __gid_t *__aup_gids);
+extern AUTH *authunix_create (char *__machname, uid_t __uid, gid_t __gid,
+			      int __len, gid_t *__aup_gids);
 libc_hidden_proto(authunix_create)
 extern AUTH *authunix_create_default (void);
 libc_hidden_proto(authunix_create_default)
