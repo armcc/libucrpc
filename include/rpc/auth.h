@@ -79,7 +79,7 @@ union des_block {
 	char c[8];
 };
 typedef union des_block des_block;
-extern bool_t xdr_des_block (XDR *__xdrs, des_block *__blkp) __THROW;
+extern bool_t xdr_des_block (XDR *__xdrs, des_block *__blkp);
 
 /*
  * Authentication info.  Opaque to client.
@@ -169,14 +169,13 @@ extern AUTH *authunix_create (char *__machname, uid_t __uid, gid_t __gid,
 libc_hidden_proto(authunix_create)
 extern AUTH *authunix_create_default (void);
 libc_hidden_proto(authunix_create_default)
-extern AUTH *authnone_create (void) __THROW;
+extern AUTH *authnone_create (void);
 libc_hidden_proto(authnone_create)
 #if 0
 extern AUTH *authdes_create (const char *__servername, u_int __window,
-			     struct sockaddr *__syncaddr, des_block *__ckey)
-     __THROW;
+			     struct sockaddr *__syncaddr, des_block *__ckey);
 extern AUTH *authdes_pk_create (const char *, netobj *, u_int,
-				struct sockaddr *, des_block *) __THROW;
+				struct sockaddr *, des_block *);
 #endif
 
 
@@ -194,12 +193,11 @@ extern AUTH *authdes_pk_create (const char *, netobj *, u_int,
  *  Netname manipulating functions
  *
  */
-extern int getnetname (char *) __THROW;
-extern int host2netname (char *, const char *, const char *) __THROW;
-extern int user2netname (char *, const uid_t, const char *) __THROW;
-extern int netname2user (const char *, uid_t *, gid_t *, int *, gid_t *)
-     __THROW;
-extern int netname2host (const char *, char *, const int) __THROW;
+extern int getnetname (char *);
+extern int host2netname (char *, const char *, const char *);
+extern int user2netname (char *, const uid_t, const char *);
+extern int netname2user (const char *, uid_t *, gid_t *, int *, gid_t *);
+extern int netname2host (const char *, char *, const int);
 
 /*
  *
@@ -219,7 +217,7 @@ extern int key_get_conv (char *, des_block *);
 /*
  * XDR an opaque authentication struct.
  */
-extern bool_t xdr_opaque_auth (XDR *, struct opaque_auth *) __THROW;
+extern bool_t xdr_opaque_auth (XDR *, struct opaque_auth *);
 libc_hidden_proto(xdr_opaque_auth)
 
 #ifdef __cplusplus

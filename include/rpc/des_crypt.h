@@ -80,19 +80,19 @@ extern "C" {
  * Cipher Block Chaining mode
  */
 extern int cbc_crypt (char *__key, char *__buf, unsigned __len,
-		      unsigned __mode, char *__ivec) __THROW;
+		      unsigned __mode, char *__ivec);
 
 /*
  * Electronic Code Book mode
  */
 extern int ecb_crypt (char *__key, char *__buf, unsigned __len,
-		      unsigned __mode) __THROW;
+		      unsigned __mode);
 
 /*
  * Set des parity for a key.
  * DES parity is odd and in the low bit of each byte
  */
-extern void des_setparity (char *__key) __THROW;
+extern void des_setparity (char *__key);
 
 #ifdef __cplusplus
 }

@@ -283,8 +283,7 @@ struct CLIENT {
  *	u_long prog;
  *	u_long vers;
  */
-extern CLIENT *clntraw_create (const u_long __prog, const u_long __vers)
-     __THROW;
+extern CLIENT *clntraw_create (const u_long __prog, const u_long __vers);
 
 
 /*
@@ -298,8 +297,7 @@ extern CLIENT *clntraw_create (const u_long __prog, const u_long __vers)
  *	char *prot;	-- protocol
  */
 extern CLIENT *clnt_create (const char *__host, const u_long __prog,
-			    const u_long __vers, const char *__prot)
-     __THROW;
+			    const u_long __vers, const char *__prot);
 
 
 /*
@@ -315,7 +313,7 @@ extern CLIENT *clnt_create (const char *__host, const u_long __prog,
  */
 extern CLIENT *clnttcp_create (struct sockaddr_in *__raddr, u_long __prog,
 			       u_long __version, int *__sockp, u_int __sendsz,
-			       u_int __recvsz) __THROW;
+			       u_int __recvsz);
 libc_hidden_proto(clnttcp_create)
 
 /*
@@ -341,12 +339,12 @@ libc_hidden_proto(clnttcp_create)
  */
 extern CLIENT *clntudp_create (struct sockaddr_in *__raddr, u_long __program,
 			       u_long __version, struct timeval __wait_resend,
-			       int *__sockp) __THROW;
+			       int *__sockp);
 libc_hidden_proto(clntudp_create)
 extern CLIENT *clntudp_bufcreate (struct sockaddr_in *__raddr,
 				  u_long __program, u_long __version,
 				  struct timeval __wait_resend, int *__sockp,
-				  u_int __sendsz, u_int __recvsz) __THROW;
+				  u_int __sendsz, u_int __recvsz);
 libc_hidden_proto(clntudp_bufcreate)
 
 
@@ -363,22 +361,22 @@ libc_hidden_proto(clntudp_bufcreate)
  */
 extern CLIENT *clntunix_create  (struct sockaddr_un *__raddr, u_long __program,
 				 u_long __version, int *__sockp,
-				 u_int __sendsz, u_int __recvsz) __THROW;
+				 u_int __sendsz, u_int __recvsz);
 libc_hidden_proto(clntunix_create)
 
 
 extern int callrpc (const char *__host, const u_long __prognum,
 		    const u_long __versnum, const u_long __procnum,
 		    const xdrproc_t __inproc, const char *__in,
-		    const xdrproc_t __outproc, char *__out) __THROW;
-extern int _rpc_dtablesize (void) __THROW;
+		    const xdrproc_t __outproc, char *__out);
+extern int _rpc_dtablesize (void);
 libc_hidden_proto(_rpc_dtablesize)
 
 /*
  * Print why creation failed
  */
 extern void clnt_pcreateerror (const char *__msg);	/* stderr */
-extern char *clnt_spcreateerror(const char *__msg) __THROW;	/* string */
+extern char *clnt_spcreateerror(const char *__msg);	/* string */
 libc_hidden_proto(clnt_spcreateerror)
 
 /*
@@ -392,7 +390,7 @@ extern void clnt_perrno (enum clnt_stat __num);		/* stderr */
 extern void clnt_perror (CLIENT *__clnt, const char *__msg);
 							/* stderr */
 libc_hidden_proto(clnt_perror)
-extern char *clnt_sperror (CLIENT *__clnt, const char *__msg) __THROW;
+extern char *clnt_sperror (CLIENT *__clnt, const char *__msg);
 							/* string */
 libc_hidden_proto(clnt_sperror)
 
@@ -412,20 +410,20 @@ extern struct rpc_createerr rpc_createerr;
 /*
  * Copy error message to buffer.
  */
-extern char *clnt_sperrno (enum clnt_stat __num) __THROW;	/* string */
+extern char *clnt_sperrno (enum clnt_stat __num);	/* string */
 libc_hidden_proto(clnt_sperrno)
 
 /*
  * get the port number on the host for the rpc program,version and proto
  */
 extern int getrpcport (const char * __host, u_long __prognum,
-		       u_long __versnum, u_int proto) __THROW;
+		       u_long __versnum, u_int proto);
 
 /*
  * get the local host's IP address without consulting
  * name service library functions
  */
-extern void get_myaddress (struct sockaddr_in *) __THROW;
+extern void get_myaddress (struct sockaddr_in *);
 
 #define UDPMSGSIZE	8800	/* rpc imposed limit on udp msg size */
 #define RPCSMALLMSGSIZE	400	/* a more reasonable packet size */

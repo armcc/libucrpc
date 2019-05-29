@@ -174,7 +174,7 @@ typedef void (*__dispatch_fn_t) (struct svc_req*, SVCXPRT*);
  */
 extern bool_t svc_register (SVCXPRT *__xprt, rpcprog_t __prog,
 			    rpcvers_t __vers, __dispatch_fn_t __dispatch,
-			    rpcprot_t __protocol) __THROW;
+			    rpcprot_t __protocol);
 libc_hidden_proto(svc_register)
 
 /*
@@ -184,7 +184,7 @@ libc_hidden_proto(svc_register)
  *	rpcprog_t prog;
  *	rpcvers_t vers;
  */
-extern void svc_unregister (rpcprog_t __prog, rpcvers_t __vers) __THROW;
+extern void svc_unregister (rpcprog_t __prog, rpcvers_t __vers);
 libc_hidden_proto(svc_unregister)
 
 /*
@@ -193,7 +193,7 @@ libc_hidden_proto(svc_unregister)
  * xprt_register(xprt)
  *	SVCXPRT *xprt;
  */
-extern void xprt_register (SVCXPRT *__xprt) __THROW;
+extern void xprt_register (SVCXPRT *__xprt);
 libc_hidden_proto(xprt_register)
 
 /*
@@ -202,7 +202,7 @@ libc_hidden_proto(xprt_register)
  * xprt_unregister(xprt)
  *	SVCXPRT *xprt;
  */
-extern void xprt_unregister (SVCXPRT *__xprt) __THROW;
+extern void xprt_unregister (SVCXPRT *__xprt);
 libc_hidden_proto(xprt_unregister)
 
 /*
@@ -232,27 +232,27 @@ libc_hidden_proto(xprt_unregister)
  */
 
 extern bool_t	svc_sendreply (SVCXPRT *xprt, xdrproc_t __xdr_results,
-			       caddr_t __xdr_location) __THROW;
+			       caddr_t __xdr_location);
 libc_hidden_proto(svc_sendreply)
 
-extern void	svcerr_decode (SVCXPRT *__xprt) __THROW;
+extern void	svcerr_decode (SVCXPRT *__xprt);
 libc_hidden_proto(svcerr_decode)
 
-extern void	svcerr_weakauth (SVCXPRT *__xprt) __THROW;
+extern void	svcerr_weakauth (SVCXPRT *__xprt);
 
-extern void	svcerr_noproc (SVCXPRT *__xprt) __THROW;
+extern void	svcerr_noproc (SVCXPRT *__xprt);
 
 extern void	svcerr_progvers (SVCXPRT *__xprt, rpcvers_t __low_vers,
-				 rpcvers_t __high_vers) __THROW;
+				 rpcvers_t __high_vers);
 libc_hidden_proto(svcerr_progvers)
 
-extern void	svcerr_auth (SVCXPRT *__xprt, enum auth_stat __why) __THROW;
+extern void	svcerr_auth (SVCXPRT *__xprt, enum auth_stat __why);
 libc_hidden_proto(svcerr_auth)
 
-extern void	svcerr_noprog (SVCXPRT *__xprt) __THROW;
+extern void	svcerr_noprog (SVCXPRT *__xprt);
 libc_hidden_proto(svcerr_noprog)
 
-extern void	svcerr_systemerr (SVCXPRT *__xprt) __THROW;
+extern void	svcerr_systemerr (SVCXPRT *__xprt);
 
 /*
  * Lowest level dispatching -OR- who owns this process anyway.
@@ -279,16 +279,16 @@ extern fd_set svc_fdset;
  * a small program implemented by the svc_rpc implementation itself;
  * also see clnt.h for protocol numbers.
  */
-extern void svc_getreq (int __rdfds) __THROW;
+extern void svc_getreq (int __rdfds);
 libc_hidden_proto(svc_getreq)
-extern void svc_getreq_common (const int __fd) __THROW;
+extern void svc_getreq_common (const int __fd);
 libc_hidden_proto(svc_getreq_common)
-extern void svc_getreqset (fd_set *__readfds) __THROW;
+extern void svc_getreqset (fd_set *__readfds);
 libc_hidden_proto(svc_getreqset)
-extern void svc_getreq_poll (struct pollfd *, const int) __THROW;
+extern void svc_getreq_poll (struct pollfd *, const int);
 libc_hidden_proto(svc_getreq_poll)
-extern void svc_exit (void) __THROW;
-extern void svc_run (void) __THROW;
+extern void svc_exit (void);
+extern void svc_run (void);
 
 /*
  * Socket to use on svcxxx_create call to get default socket
@@ -302,29 +302,27 @@ extern void svc_run (void) __THROW;
 /*
  * Memory based rpc for testing and timing.
  */
-extern SVCXPRT *svcraw_create (void) __THROW;
+extern SVCXPRT *svcraw_create (void);
 
 /*
  * Udp based rpc.
  */
-extern SVCXPRT *svcudp_create (int __sock) __THROW;
+extern SVCXPRT *svcudp_create (int __sock);
 libc_hidden_proto(svcudp_create)
-extern SVCXPRT *svcudp_bufcreate (int __sock, u_int __sendsz, u_int __recvsz)
-     __THROW;
+extern SVCXPRT *svcudp_bufcreate (int __sock, u_int __sendsz, u_int __recvsz);
 libc_hidden_proto(svcudp_bufcreate)
 
 /*
  * Tcp based rpc.
  */
-extern SVCXPRT *svctcp_create (int __sock, u_int __sendsize, u_int __recvsize)
-     __THROW;
+extern SVCXPRT *svctcp_create (int __sock, u_int __sendsize, u_int __recvsize);
 
 
 /*
  * Unix based rpc.
  */
 extern SVCXPRT *svcunix_create (int __sock, u_int __sendsize, u_int __recvsize,
-				char *__path) __THROW;
+				char *__path);
 
 
 #ifdef __cplusplus

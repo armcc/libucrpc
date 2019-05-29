@@ -74,8 +74,7 @@ struct authunix_parms
     gid_t *aup_gids;
   };
 
-extern bool_t xdr_authunix_parms (XDR *__xdrs, struct authunix_parms *__p)
-     __THROW;
+extern bool_t xdr_authunix_parms (XDR *__xdrs, struct authunix_parms *__p);
 libc_hidden_proto(xdr_authunix_parms)
 
 /*

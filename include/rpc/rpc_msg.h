@@ -172,7 +172,7 @@ struct rpc_msg {
  * 	XDR *xdrs;
  * 	struct rpc_msg *cmsg;
  */
-extern bool_t	xdr_callmsg (XDR *__xdrs, struct rpc_msg *__cmsg) __THROW;
+extern bool_t	xdr_callmsg (XDR *__xdrs, struct rpc_msg *__cmsg);
 libc_hidden_proto(xdr_callmsg)
 
 /*
@@ -181,7 +181,7 @@ libc_hidden_proto(xdr_callmsg)
  * 	XDR *xdrs;
  * 	struct rpc_msg *cmsg;
  */
-extern bool_t	xdr_callhdr (XDR *__xdrs, struct rpc_msg *__cmsg) __THROW;
+extern bool_t	xdr_callhdr (XDR *__xdrs, struct rpc_msg *__cmsg);
 libc_hidden_proto(xdr_callhdr)
 
 /*
@@ -190,7 +190,7 @@ libc_hidden_proto(xdr_callhdr)
  * 	XDR *xdrs;
  * 	struct rpc_msg *rmsg;
  */
-extern bool_t	xdr_replymsg (XDR *__xdrs, struct rpc_msg *__rmsg) __THROW;
+extern bool_t	xdr_replymsg (XDR *__xdrs, struct rpc_msg *__rmsg);
 libc_hidden_proto(xdr_replymsg)
 
 /*
@@ -199,8 +199,7 @@ libc_hidden_proto(xdr_replymsg)
  * 	struct rpc_msg *msg;
  * 	struct rpc_err *error;
  */
-extern void	_seterr_reply (struct rpc_msg *__msg, struct rpc_err *__error)
-     __THROW;
+extern void	_seterr_reply (struct rpc_msg *__msg, struct rpc_err *__error);
 libc_hidden_proto(_seterr_reply)
 
 #ifdef __UCLIBC__

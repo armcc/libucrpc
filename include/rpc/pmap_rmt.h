@@ -53,8 +53,7 @@ struct rmtcallargs {
 	xdrproc_t xdr_args;
 };
 
-extern bool_t xdr_rmtcall_args (XDR *__xdrs, struct rmtcallargs *__crp)
-     __THROW;
+extern bool_t xdr_rmtcall_args (XDR *__xdrs, struct rmtcallargs *__crp);
 libc_hidden_proto(xdr_rmtcall_args)
 
 
@@ -65,7 +64,7 @@ struct rmtcallres {
 	xdrproc_t xdr_results;
 };
 
-extern bool_t xdr_rmtcallres (XDR *__xdrs, struct rmtcallres *__crp) __THROW;
+extern bool_t xdr_rmtcallres (XDR *__xdrs, struct rmtcallres *__crp);
 libc_hidden_proto(xdr_rmtcallres)
 
 #ifdef __cplusplus

@@ -96,7 +96,7 @@ struct pmap {
 	long unsigned pm_port;
 };
 
-extern bool_t xdr_pmap (XDR *__xdrs, struct pmap *__regs) __THROW;
+extern bool_t xdr_pmap (XDR *__xdrs, struct pmap *__regs);
 libc_hidden_proto(xdr_pmap)
 
 struct pmaplist {
@@ -104,7 +104,7 @@ struct pmaplist {
 	struct pmaplist *pml_next;
 };
 
-extern bool_t xdr_pmaplist (XDR *__xdrs, struct pmaplist **__rp) __THROW;
+extern bool_t xdr_pmaplist (XDR *__xdrs, struct pmaplist **__rp);
 libc_hidden_proto(xdr_pmaplist)
 
 #ifdef __cplusplus

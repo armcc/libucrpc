@@ -92,12 +92,12 @@ struct authdes_verf
 /* Map a des credential into a unix cred. */
 extern int authdes_getucred (const struct authdes_cred * __adc,
 			     uid_t * __uid, gid_t * __gid,
-			     short *__grouplen, gid_t * __groups) __THROW;
+			     short *__grouplen, gid_t * __groups);
 
 /* Get the public key for NAME and place it in KEY.  NAME can only be
    up to MAXNETNAMELEN bytes long and the destination buffer KEY should
    have HEXKEYBYTES + 1 bytes long to fit all characters from the key.  */
-extern int getpublickey (const char *__name, char *__key) __THROW;
+extern int getpublickey (const char *__name, char *__key);
 
 /* Get the secret key for NAME and place it in KEY.  PASSWD is used to
    decrypt the encrypted key stored in the database.  NAME can only be
@@ -105,11 +105,11 @@ extern int getpublickey (const char *__name, char *__key) __THROW;
    should have HEXKEYBYTES + 1 bytes long to fit all characters from
    the key.  */
 extern int getsecretkey (const char *__name, char *__key,
-			 const char *__passwd) __THROW;
+			 const char *__passwd);
 #endif
 
 extern int rtime (struct sockaddr_in *__addrp, struct rpc_timeval *__timep,
-		  struct rpc_timeval *__timeout) __THROW;
+		  struct rpc_timeval *__timeout);
 
 #ifdef __cplusplus
 }

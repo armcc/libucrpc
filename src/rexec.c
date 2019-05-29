@@ -42,7 +42,7 @@
 #include <malloc.h>
 
 #define SA_LEN(_x)      __libc_sa_len((_x)->sa_family)
-extern int __libc_sa_len(sa_family_t __af) __THROW attribute_hidden;
+extern int __libc_sa_len(sa_family_t __af) attribute_hidden;
 
 /* int rexecoptions; - google does not know it */
 static char *ahostbuf = NULL;

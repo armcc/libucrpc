@@ -72,12 +72,11 @@ typedef bool_t (*resultproc_t) (caddr_t resp, struct sockaddr_in *raddr);
  */
 
 extern bool_t pmap_set (const u_long __program, const u_long __vers,
-			int __protocol, u_short __port) __THROW;
+			int __protocol, u_short __port);
 libc_hidden_proto(pmap_set)
-extern bool_t pmap_unset (const u_long __program, const u_long __vers)
-     __THROW;
+extern bool_t pmap_unset (const u_long __program, const u_long __vers);
 libc_hidden_proto(pmap_unset)
-extern struct pmaplist *pmap_getmaps (struct sockaddr_in *__address) __THROW;
+extern struct pmaplist *pmap_getmaps (struct sockaddr_in *__address);
 extern enum clnt_stat pmap_rmtcall (struct sockaddr_in *__addr,
 				    const u_long __prog,
 				    const u_long __vers,
@@ -85,17 +84,16 @@ extern enum clnt_stat pmap_rmtcall (struct sockaddr_in *__addr,
 				    xdrproc_t __xdrargs,
 				    caddr_t __argsp, xdrproc_t __xdrres,
 				    caddr_t __resp, struct timeval __tout,
-				    u_long *__port_ptr) __THROW;
+				    u_long *__port_ptr);
 extern enum clnt_stat clnt_broadcast (const u_long __prog,
 				      const u_long __vers,
 				      const u_long __proc, xdrproc_t __xargs,
 				      caddr_t __argsp, xdrproc_t __xresults,
 				      caddr_t __resultsp,
-				      resultproc_t __eachresult) __THROW;
+				      resultproc_t __eachresult);
 extern u_short pmap_getport (struct sockaddr_in *__address,
 			     const u_long __program,
-			     const u_long __version, u_int __protocol)
-     __THROW;
+			     const u_long __version, u_int __protocol);
 libc_hidden_proto(pmap_getport)
 
 #ifdef __cplusplus
