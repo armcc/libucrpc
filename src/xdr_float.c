@@ -48,6 +48,16 @@ static char sccsid[] = "@(#)xdr_float.c 1.12 87/08/11 Copyr 1984 Sun Micro";
 #include <rpc/xdr.h>
 
 /*
+ * Fixme: Based on the original uClibc bits/endian.h headers, there are a
+ * few cases (legacy ARM and SH?) where __FLOAT_WORD_ORDER is hardcodes to
+ * __BIG_ENDIAN instead of following the byte order for integers...
+ */
+
+#ifndef __FLOAT_WORD_ORDER
+#define __FLOAT_WORD_ORDER __BYTE_ORDER
+#endif
+
+/*
  * NB: Not portable.
  * This routine works on Suns (Sky / 68000's) and Vaxen.
  */
