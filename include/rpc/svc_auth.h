@@ -50,7 +50,6 @@ extern "C" {
  */
 extern enum auth_stat _authenticate (struct svc_req *__rqst,
 				     struct rpc_msg *__msg);
-libc_hidden_proto(_authenticate)
 
 #ifdef __cplusplus
 }

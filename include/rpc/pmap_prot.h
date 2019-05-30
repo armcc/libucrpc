@@ -97,7 +97,6 @@ struct pmap {
 };
 
 extern bool_t xdr_pmap (XDR *__xdrs, struct pmap *__regs);
-libc_hidden_proto(xdr_pmap)
 
 struct pmaplist {
 	struct pmap	pml_map;
@@ -105,7 +104,6 @@ struct pmaplist {
 };
 
 extern bool_t xdr_pmaplist (XDR *__xdrs, struct pmaplist **__rp);
-libc_hidden_proto(xdr_pmaplist)
 
 #ifdef __cplusplus
 }

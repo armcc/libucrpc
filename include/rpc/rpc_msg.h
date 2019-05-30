@@ -173,7 +173,6 @@ struct rpc_msg {
  * 	struct rpc_msg *cmsg;
  */
 extern bool_t	xdr_callmsg (XDR *__xdrs, struct rpc_msg *__cmsg);
-libc_hidden_proto(xdr_callmsg)
 
 /*
  * XDR routine to pre-serialize the static part of a rpc message.
@@ -182,7 +181,6 @@ libc_hidden_proto(xdr_callmsg)
  * 	struct rpc_msg *cmsg;
  */
 extern bool_t	xdr_callhdr (XDR *__xdrs, struct rpc_msg *__cmsg);
-libc_hidden_proto(xdr_callhdr)
 
 /*
  * XDR routine to handle a rpc reply.
@@ -191,7 +189,6 @@ libc_hidden_proto(xdr_callhdr)
  * 	struct rpc_msg *rmsg;
  */
 extern bool_t	xdr_replymsg (XDR *__xdrs, struct rpc_msg *__rmsg);
-libc_hidden_proto(xdr_replymsg)
 
 /*
  * Fills in the error part of a reply message.
@@ -200,7 +197,6 @@ libc_hidden_proto(xdr_replymsg)
  * 	struct rpc_err *error;
  */
 extern void	_seterr_reply (struct rpc_msg *__msg, struct rpc_err *__error);
-libc_hidden_proto(_seterr_reply)
 
 #ifdef __UCLIBC__
 /*
@@ -210,7 +206,6 @@ libc_hidden_proto(_seterr_reply)
  * 	struct accepted_reply *rej;
  */
 extern bool_t	xdr_accepted_reply(XDR *__xdrs, struct accepted_reply *__ar);
-libc_hidden_proto(xdr_accepted_reply)
 
 /*
  * XDR routine to handle a rejected rpc reply.
@@ -219,7 +214,6 @@ libc_hidden_proto(xdr_accepted_reply)
  * 	struct rejected_reply *rej;
  */
 extern bool_t	xdr_rejected_reply(XDR *__xdrs, struct rejected_reply *__rr);
-libc_hidden_proto(xdr_rejected_reply)
 #endif
 
 #ifdef __cplusplus

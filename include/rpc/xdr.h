@@ -291,23 +291,14 @@ struct xdr_discrim
  * also, the XDR structure is always updated by some of these calls.
  */
 extern bool_t xdr_void (void);
-libc_hidden_proto(xdr_void)
 extern bool_t xdr_short (XDR *__xdrs, short *__sp);
-libc_hidden_proto(xdr_short)
 extern bool_t xdr_u_short (XDR *__xdrs, u_short *__usp);
-libc_hidden_proto(xdr_u_short)
 extern bool_t xdr_int (XDR *__xdrs, int *__ip);
-libc_hidden_proto(xdr_int)
 extern bool_t xdr_u_int (XDR *__xdrs, u_int *__up);
-libc_hidden_proto(xdr_u_int)
 extern bool_t xdr_long (XDR *__xdrs, long *__lp);
-libc_hidden_proto(xdr_long)
 extern bool_t xdr_u_long (XDR *__xdrs, u_long *__ulp);
-libc_hidden_proto(xdr_u_long)
 extern bool_t xdr_hyper (XDR *__xdrs, quad_t *__llp);
-libc_hidden_proto(xdr_hyper)
 extern bool_t xdr_u_hyper (XDR *__xdrs, u_quad_t *__ullp);
-libc_hidden_proto(xdr_u_hyper)
 extern bool_t xdr_longlong_t (XDR *__xdrs, quad_t *__llp);
 extern bool_t xdr_u_longlong_t (XDR *__xdrs, u_quad_t *__ullp);
 extern bool_t xdr_int8_t (XDR *__xdrs, int8_t *__ip);
@@ -321,23 +312,16 @@ extern bool_t xdr_uint64_t (XDR *__xdrs, uint64_t *__up);
 extern bool_t xdr_quad_t (XDR *__xdrs, quad_t *__ip);
 extern bool_t xdr_u_quad_t (XDR *__xdrs, u_quad_t *__up);
 extern bool_t xdr_bool (XDR *__xdrs, bool_t *__bp);
-libc_hidden_proto(xdr_bool)
 extern bool_t xdr_enum (XDR *__xdrs, enum_t *__ep);
-libc_hidden_proto(xdr_enum)
 extern bool_t xdr_array (XDR * _xdrs, caddr_t *__addrp, u_int *__sizep,
 			 u_int __maxsize, u_int __elsize, xdrproc_t __elproc);
-libc_hidden_proto(xdr_array)
 extern bool_t xdr_bytes (XDR *__xdrs, char **__cpp, u_int *__sizep,
 			 u_int __maxsize);
-libc_hidden_proto(xdr_bytes)
 extern bool_t xdr_opaque (XDR *__xdrs, caddr_t __cp, u_int __cnt);
-libc_hidden_proto(xdr_opaque)
 extern bool_t xdr_string (XDR *__xdrs, char **__cpp, u_int __maxsize);
-libc_hidden_proto(xdr_string)
 extern bool_t xdr_union (XDR *__xdrs, enum_t *__dscmp, char *__unp,
 			 const struct xdr_discrim *__choices,
 			 xdrproc_t dfault);
-libc_hidden_proto(xdr_union)
 extern bool_t xdr_char (XDR *__xdrs, char *__cp);
 extern bool_t xdr_u_char (XDR *__xdrs, u_char *__cp);
 extern bool_t xdr_vector (XDR *__xdrs, char *__basep, u_int __nelem,
@@ -346,7 +330,6 @@ extern bool_t xdr_float (XDR *__xdrs, float *__fp);
 extern bool_t xdr_double (XDR *__xdrs, double *__dp);
 extern bool_t xdr_reference (XDR *__xdrs, caddr_t *__xpp, u_int __size,
 			     xdrproc_t __proc);
-libc_hidden_proto(xdr_reference)
 extern bool_t xdr_pointer (XDR *__xdrs, char **__objpp,
 			   u_int __obj_size, xdrproc_t __xdr_obj);
 extern bool_t xdr_wrapstring (XDR *__xdrs, char **__cpp);
@@ -373,7 +356,6 @@ extern bool_t xdr_netobj (XDR *__xdrs, struct netobj *__np);
 /* XDR using memory buffers */
 extern void xdrmem_create (XDR *__xdrs, const caddr_t __addr,
 			   u_int __size, enum xdr_op __xop);
-libc_hidden_proto(xdrmem_create)
 
 /* XDR using stdio library */
 extern void xdrstdio_create (XDR *__xdrs, FILE *__file, enum xdr_op __xop);
@@ -383,19 +365,15 @@ extern void xdrrec_create (XDR *__xdrs, u_int __sendsize,
 			   u_int __recvsize, caddr_t __tcp_handle,
 			   int (*__readit) (char *, char *, int),
 			   int (*__writeit) (char *, char *, int));
-libc_hidden_proto(xdrrec_create)
 
 /* make end of xdr record */
 extern bool_t xdrrec_endofrecord (XDR *__xdrs, bool_t __sendnow);
-libc_hidden_proto(xdrrec_endofrecord)
 
 /* move to beginning of next record */
 extern bool_t xdrrec_skiprecord (XDR *__xdrs);
-libc_hidden_proto(xdrrec_skiprecord)
 
 /* true if no more input */
 extern bool_t xdrrec_eof (XDR *__xdrs);
-libc_hidden_proto(xdrrec_eof)
 
 /* free memory buffers for xdr */
 extern void xdr_free (xdrproc_t __proc, char *__objp);

@@ -73,9 +73,7 @@ typedef bool_t (*resultproc_t) (caddr_t resp, struct sockaddr_in *raddr);
 
 extern bool_t pmap_set (const u_long __program, const u_long __vers,
 			int __protocol, u_short __port);
-libc_hidden_proto(pmap_set)
 extern bool_t pmap_unset (const u_long __program, const u_long __vers);
-libc_hidden_proto(pmap_unset)
 extern struct pmaplist *pmap_getmaps (struct sockaddr_in *__address);
 extern enum clnt_stat pmap_rmtcall (struct sockaddr_in *__addr,
 				    const u_long __prog,
@@ -94,7 +92,6 @@ extern enum clnt_stat clnt_broadcast (const u_long __prog,
 extern u_short pmap_getport (struct sockaddr_in *__address,
 			     const u_long __program,
 			     const u_long __version, u_int __protocol);
-libc_hidden_proto(pmap_getport)
 
 #ifdef __cplusplus
 }

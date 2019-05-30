@@ -54,7 +54,6 @@ struct rmtcallargs {
 };
 
 extern bool_t xdr_rmtcall_args (XDR *__xdrs, struct rmtcallargs *__crp);
-libc_hidden_proto(xdr_rmtcall_args)
 
 
 struct rmtcallres {
@@ -65,7 +64,6 @@ struct rmtcallres {
 };
 
 extern bool_t xdr_rmtcallres (XDR *__xdrs, struct rmtcallres *__crp);
-libc_hidden_proto(xdr_rmtcallres)
 
 #ifdef __cplusplus
 }
