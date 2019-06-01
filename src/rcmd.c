@@ -83,7 +83,6 @@ static char sccsid[] = "@(#)rcmd.c	8.3 (Berkeley) 3/26/94";
 #include <wchar.h>
 #endif
 #include <sys/uio.h>
-#include <bits/uClibc_alloc.h>
 
 #ifndef _PATH_HEQUIV
 #define _PATH_HEQUIV "/etc/hosts.equiv"
@@ -117,7 +116,7 @@ int rcmd(char **ahost, u_short rport, const char *locuser, const char *remuser,
 
 #ifdef __UCLIBC_HAS_REENTRANT_RPC__
 	hstbuflen = 1024;
-	tmphstbuf = stack_heap_alloc(hstbuflen);
+	tmphstbuf = malloc(hstbuflen);
 
 	while (gethostbyname_r (*ahost, &hostbuf, tmphstbuf,
 		    hstbuflen, &hp, &herr) != 0 || hp == NULL)
@@ -125,7 +124,7 @@ int rcmd(char **ahost, u_short rport, const char *locuser, const char *remuser,
 	    if (herr != NETDB_INTERNAL || errno != ERANGE)
 	    {
 		__set_h_errno (herr);
-		stack_heap_free(tmphstbuf);
+		free(tmphstbuf);
 		herror(*ahost);
 		return -1;
 	    }
@@ -133,11 +132,11 @@ int rcmd(char **ahost, u_short rport, const char *locuser, const char *remuser,
 	    {
 		/* Enlarge the buffer.  */
 		hstbuflen *= 2;
-		stack_heap_free(tmphstbuf);
-		tmphstbuf = stack_heap_alloc(hstbuflen);
+		free(tmphstbuf);
+		tmphstbuf = malloc(hstbuflen);
 	    }
 	}
-	stack_heap_free(tmphstbuf);
+	free(tmphstbuf);
 #else /* call the non-reentrant version */
 	if ((hp = gethostbyname(*ahost)) == NULL) {
 	    return -1;
@@ -321,23 +320,23 @@ int ruserok(const char *rhost, int superuser, const char *ruser,
 
 #ifdef __UCLIBC_HAS_REENTRANT_RPC__
 	buflen = 1024;
-	buffer = stack_heap_alloc(buflen);
+	buffer = malloc(buflen);
 
 	while (gethostbyname_r (rhost, &hostbuf, buffer,
 		    buflen, &hp, &herr) != 0 || hp == NULL)
 	{
 	    if (herr != NETDB_INTERNAL || errno != ERANGE) {
-		stack_heap_free(buffer);
+		free(buffer);
 		return -1;
 	    } else
 	    {
 		/* Enlarge the buffer.  */
 		buflen *= 2;
-		stack_heap_free(buffer);
-		buffer = stack_heap_alloc(buflen);
+		free(buffer);
+		buffer = malloc(buflen);
 	    }
 	}
-	stack_heap_free(buffer);
+	free(buffer);
 #else
 	if ((hp = gethostbyname(rhost)) == NULL) {
 		return -1;
@@ -430,15 +429,15 @@ iruserok2 (uint32_t raddr, int superuser, const char *ruser, const char *luser,
 #ifdef __UCLIBC_HAS_REENTRANT_RPC__
 		size_t buflen = sysconf (_SC_GETPW_R_SIZE_MAX);
 		struct passwd pwdbuf;
-		char *buffer = stack_heap_alloc(buflen);
+		char *buffer = malloc(buflen);
 
 		if (getpwnam_r (luser, &pwdbuf, buffer,
 			    buflen, &pwd) != 0 || pwd == NULL)
 		{
-			stack_heap_free(buffer);
+			free(buffer);
 			return -1;
 		}
-		stack_heap_free(buffer);
+		free(buffer);
 #else
 		if ((pwd = getpwnam(luser)) == NULL)
 			return -1;
