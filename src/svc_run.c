@@ -33,7 +33,7 @@
 
 #include <errno.h>
 #include <unistd.h>
-#include <sys/poll.h>
+#include <poll.h>
 #include "rpc_private.h"
 
 /* used by svc_[max_]pollfd */

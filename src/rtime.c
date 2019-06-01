@@ -48,7 +48,7 @@ static char sccsid[] = "@(#)rtime.c	2.2 88/08/10 4.0 RPCSRC; from 1.8 88/02/08 S
 #include <rpc/rpc.h>
 #include <rpc/clnt.h>
 #include <sys/types.h>
-#include <sys/poll.h>
+#include <poll.h>
 #include <sys/socket.h>
 #include <sys/time.h>
 #include <rpc/auth_des.h>

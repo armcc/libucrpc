@@ -55,7 +55,7 @@ static char sccsid[] = "@(#)clnt_tcp.c 1.37 87/10/05 Copyr 1984 Sun Micro";
 #include <stdio.h>
 #include <unistd.h>
 #include "rpc_private.h"
-#include <sys/poll.h>
+#include <poll.h>
 #include <sys/socket.h>
 #include <rpc/pmap_clnt.h>
 
