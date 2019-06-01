@@ -85,11 +85,6 @@ static char sccsid[] = "@(#)rcmd.c	8.3 (Berkeley) 3/26/94";
 #include <sys/uio.h>
 #include <bits/uClibc_alloc.h>
 
-/* sigsetmask and sigblock are not provided anymore, until this file is corrected,
- * include the sources */
-#include "../../signal/sigblock.c"
-#include "../../signal/sigsetmask.c"
-
 #ifndef _PATH_HEQUIV
 #define _PATH_HEQUIV "/etc/hosts.equiv"
 #endif
@@ -113,7 +108,7 @@ int rcmd(char **ahost, u_short rport, const char *locuser, const char *remuser,
 	struct hostent *hp;
 	struct sockaddr_in sin, from;
 	struct pollfd pfd[2];
-	int32_t oldmask;
+	sigset_t sig, oldsig;
 	pid_t pid;
 	int s, lport, timo;
 	char c;
@@ -152,7 +147,9 @@ int rcmd(char **ahost, u_short rport, const char *locuser, const char *remuser,
 	pfd[1].events = POLLIN;
 
         *ahost = hp->h_name;
-        oldmask = sigblock(__sigmask(SIGURG)); /* sigblock */
+	sigemptyset(&sig);
+	sigaddset(&sig, SIGURG);
+	sigprocmask(SIG_BLOCK, &sig, &oldsig);
 	for (timo = 1, lport = IPPORT_RESERVED - 1;;) {
 		s = rresvport(&lport);
 		if (s < 0) {
@@ -161,7 +158,7 @@ int rcmd(char **ahost, u_short rport, const char *locuser, const char *remuser,
 					  "rcmd: socket: All ports in use\n");
 			else
 			    (void)fprintf(stderr, "rcmd: socket: %m\n");
-			sigsetmask(oldmask); /* sigsetmask */
+			sigprocmask(SIG_SETMASK, &oldsig, NULL);
 			return -1;
 		}
 		fcntl(s, F_SETOWN, pid);
@@ -196,7 +193,7 @@ int rcmd(char **ahost, u_short rport, const char *locuser, const char *remuser,
 			continue;
 		}
 		(void)fprintf(stderr, "%s: %m\n", hp->h_name);
-		sigsetmask(oldmask); /* __sigsetmask */
+		sigprocmask(SIG_SETMASK, &oldsig, NULL);
 		return -1;
 	}
 	lport--;
@@ -263,14 +260,14 @@ int rcmd(char **ahost, u_short rport, const char *locuser, const char *remuser,
 		}
 		goto bad2;
 	}
-	sigsetmask(oldmask);
+	sigprocmask(SIG_SETMASK, &oldsig, NULL);
 	return s;
 bad2:
 	if (lport)
 		(void)close(*fd2p);
 bad:
 	(void)close(s);
-	sigsetmask(oldmask);
+	sigprocmask(SIG_SETMASK, &oldsig, NULL);
 	return -1;
 }
 
