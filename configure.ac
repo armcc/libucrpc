@@ -1,0 +1,13 @@
+AC_INIT([libucrpc],[0.1])
+AM_INIT_AUTOMAKE([-Wall foreign])
+AC_CONFIG_MACRO_DIR([m4])
+
+AC_PROG_CC
+
+LT_VERSION_INFO="0:0:0"
+AC_SUBST([LT_VERSION_INFO])
+
+LT_INIT
+AC_CONFIG_FILES([Makefile src/Makefile])
+AC_OUTPUT
+
