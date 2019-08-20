@@ -79,7 +79,7 @@ rexec_af(char **ahost, int rport, const char *name, const char *pass, const char
 
 	if (res0->ai_canonname) {
 		if (!ahostbuf)
-			ahostbuf = __uc_malloc(NI_MAXHOST);
+			ahostbuf = malloc(NI_MAXHOST);
 		strncpy(ahostbuf, res0->ai_canonname, NI_MAXHOST);
 		ahostbuf[NI_MAXHOST-1] = '\0';
 		*ahost = ahostbuf;
