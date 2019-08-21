@@ -250,8 +250,8 @@ static struct rpcent *interpret(register struct rpcdata *d)
 
 #if defined(__UCLIBC_HAS_REENTRANT_RPC__)
 
-#include <bits/uClibc_mutex.h>
-__UCLIBC_MUTEX_STATIC(mylock, PTHREAD_MUTEX_INITIALIZER);
+#include <pthread.h>
+static pthread_mutex_t mylock = PTHREAD_MUTEX_INITIALIZER;
 
 
 static int __copy_rpcent(struct rpcent *r, struct rpcent *result_buf, char *buffer,
@@ -311,9 +311,9 @@ int getrpcbynumber_r(int number, struct rpcent *result_buf, char *buffer,
 		size_t buflen, struct rpcent **result)
 {
 	int ret;
-	__UCLIBC_MUTEX_LOCK(mylock);
+	pthread_mutex_lock(&mylock);
 	ret = __copy_rpcent(getrpcbynumber(number), result_buf, buffer, buflen, result);
-	__UCLIBC_MUTEX_UNLOCK(mylock);
+	pthread_mutex_unlock(&mylock);
 	return ret;
 }
 
@@ -321,9 +321,9 @@ int getrpcbyname_r(const char *name, struct rpcent *result_buf, char *buffer,
 		size_t buflen, struct rpcent **result)
 {
 	int ret;
-	__UCLIBC_MUTEX_LOCK(mylock);
+	pthread_mutex_lock(&mylock);
 	ret = __copy_rpcent(getrpcbyname(name), result_buf, buffer, buflen, result);
-	__UCLIBC_MUTEX_UNLOCK(mylock);
+	pthread_mutex_unlock(&mylock);
 	return ret;
 }
 
@@ -331,9 +331,9 @@ int getrpcent_r(struct rpcent *result_buf, char *buffer,
 		size_t buflen, struct rpcent **result)
 {
 	int ret;
-	__UCLIBC_MUTEX_LOCK(mylock);
+	pthread_mutex_lock(&mylock);
 	ret = __copy_rpcent(getrpcent(), result_buf, buffer, buflen, result);
-	__UCLIBC_MUTEX_UNLOCK(mylock);
+	pthread_mutex_unlock(&mylock);
 	return ret;
 }
 

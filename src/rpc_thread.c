@@ -8,15 +8,51 @@
 #include <assert.h>
 #include "rpc_private.h"
 
-
 #ifdef __UCLIBC_HAS_THREADS__
 
-#include <bits/libc-tsd.h>
-#include <bits/libc-lock.h>
+#include <pthread.h>
+
+/* Define once control variable.  */
+# define __libc_once_define(CLASS, NAME) \
+  CLASS pthread_once_t NAME = PTHREAD_ONCE_INIT
+
+/* Call handler iff the first call.  */
+#define __libc_once(ONCE_CONTROL, INIT_FUNCTION)	\
+  do {							\
+      pthread_once (&(ONCE_CONTROL), INIT_FUNCTION);	\
+  } while (0)
+
+
+/* This file defines the following macros for accessing a small fixed
+   set of thread-specific `void *' data used only internally by libc.
+
+   __libc_tsd_define(CLASS, KEY)	-- Define or declare a `void *' datum
+                       for KEY.  CLASS can be `static' for
+					   keys used in only one source file,
+					   empty for global definitions, or
+					   `extern' for global declarations.
+   __libc_tsd_address(KEY)		-- Return the `void **' pointing to
+                       the current thread's datum for KEY.
+   __libc_tsd_get(KEY)			-- Return the `void *' datum for KEY.
+   __libc_tsd_set(KEY, VALUE)		-- Set the datum for KEY to VALUE.
+
+   The set of available KEY's will usually be provided as an enum,
+   and contains (at least):
+		_LIBC_TSD_KEY_MALLOC
+		_LIBC_TSD_KEY_DL_ERROR
+		_LIBC_TSD_KEY_RPC_VARS
+   All uses must be the literal _LIBC_TSD_* name in the __libc_tsd_* macros.
+   Some implementations may not provide any enum at all and instead
+   using string pasting in the macros.  */
+
+# define __libc_tsd_define(CLASS, KEY)	CLASS pthread_key_t __libc_tsd_##KEY
+# define __libc_tsd_create(KEY) 	pthread_key_create(&__libc_tsd_##KEY, NULL)
+# define __libc_tsd_get(KEY)		pthread_getspecific(__libc_tsd_##KEY)
+# define __libc_tsd_set(KEY, VALUE)	pthread_setspecific(__libc_tsd_##KEY, (VALUE))
 
 /* Variable used in non-threaded applications or for the first thread.  */
 static struct rpc_thread_variables __libc_tsd_RPC_VARS_mem;
-__libc_tsd_define (, RPC_VARS)
+static __libc_tsd_define (, RPC_VARS);
 
 /*
  * Task-variable destructor
@@ -46,6 +82,7 @@ __rpc_thread_destroy (void)
 static void
 rpc_thread_multi (void)
 {
+  __libc_tsd_create(RPC_VARS);
   __libc_tsd_set (RPC_VARS, &__libc_tsd_RPC_VARS_mem);
 }
 
@@ -56,17 +93,14 @@ __rpc_thread_variables (void)
 	__libc_once_define (static, once);
 	struct rpc_thread_variables *tvp;
 
+	__libc_once (once, rpc_thread_multi);
 	tvp = __libc_tsd_get (RPC_VARS);
 	if (tvp == NULL) {
-		__libc_once (once, rpc_thread_multi);
-		tvp = __libc_tsd_get (RPC_VARS);
-		if (tvp == NULL) {
-			tvp = calloc (1, sizeof *tvp);
-			if (tvp != NULL)
-				__libc_tsd_set (RPC_VARS, tvp);
-			else
-				tvp = __libc_tsd_get (RPC_VARS);
-		}
+		tvp = calloc (1, sizeof *tvp);
+		if (tvp != NULL)
+			__libc_tsd_set (RPC_VARS, tvp);
+		else
+			tvp = __libc_tsd_get (RPC_VARS);
 	}
 	return tvp;
 }

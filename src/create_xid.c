@@ -24,8 +24,8 @@
 
 /* The RPC code is not threadsafe, but new code should be threadsafe. */
 
-#include <bits/uClibc_mutex.h>
-__UCLIBC_MUTEX_STATIC(mylock, PTHREAD_MUTEX_INITIALIZER);
+#include <pthread.h>
+static pthread_mutex_t mylock = PTHREAD_MUTEX_INITIALIZER;
 
 static int is_initialized;
 static struct drand48_data __rpc_lrand48_data;
@@ -34,7 +34,7 @@ u_long _create_xid (void)
 {
   long res;
 
-  __UCLIBC_MUTEX_LOCK(mylock);
+  pthread_mutex_lock(&mylock);
 
   if (!is_initialized)
     {
@@ -47,7 +47,7 @@ u_long _create_xid (void)
 
   lrand48_r (&__rpc_lrand48_data, &res);
 
-  __UCLIBC_MUTEX_UNLOCK(mylock);
+  pthread_mutex_unlock(&mylock);
 
   return res;
 }
