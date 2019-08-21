@@ -145,7 +145,6 @@ no_memory:
   marshal_new_auth (auth);
   return auth;
 }
-libc_hidden_def(authunix_create)
 
 /*
  * Returns an auth handle with parameters determined by doing lots of
@@ -183,7 +182,6 @@ authunix_create_default (void)
   free (gids);
   return ret_auth;
 }
-libc_hidden_def(authunix_create_default)
 
 /*
  * authunix operations

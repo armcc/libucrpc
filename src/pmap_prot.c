@@ -53,4 +53,3 @@ xdr_pmap (XDR *xdrs, struct pmap *regs)
     return xdr_u_long (xdrs, &regs->pm_port);
   return FALSE;
 }
-libc_hidden_def(xdr_pmap)

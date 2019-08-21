@@ -115,7 +115,6 @@ _authenticate (register struct svc_req *rqst, struct rpc_msg *msg)
 
   return AUTH_REJECTEDCRED;
 }
-libc_hidden_def(_authenticate)
 
 static enum auth_stat
 _svcauth_null (struct svc_req *rqst attribute_unused, struct rpc_msg *msg attribute_unused)

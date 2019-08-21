@@ -64,4 +64,3 @@ xdr_authunix_parms (XDR * xdrs, struct authunix_parms *p)
     }
   return FALSE;
 }
-libc_hidden_def(xdr_authunix_parms)

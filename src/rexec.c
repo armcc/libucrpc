@@ -183,7 +183,6 @@ bad:
 	freeaddrinfo(res0);
 	return -1;
 }
-libc_hidden_def(rexec_af)
 
 int
 rexec(char **ahost, int rport, const char *name, const char *pass,

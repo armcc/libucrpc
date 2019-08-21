@@ -64,7 +64,6 @@ xdr_opaque_auth (XDR *xdrs, struct opaque_auth *ap)
 		      &ap->oa_length, MAX_AUTH_BYTES);
   return FALSE;
 }
-libc_hidden_def(xdr_opaque_auth)
 
 /*
  * XDR a DES block
@@ -101,7 +100,6 @@ xdr_accepted_reply (XDR *xdrs, struct accepted_reply *ar)
     }
   return TRUE;		/* TRUE => open ended set of problems */
 }
-libc_hidden_def(xdr_accepted_reply)
 
 /*
  * XDR the MSG_DENIED part of a reply message union
@@ -124,7 +122,6 @@ xdr_rejected_reply (XDR *xdrs, struct rejected_reply *rr)
     }
   return FALSE;
 }
-libc_hidden_def(xdr_rejected_reply)
 
 static const struct xdr_discrim reply_dscrm[3] =
 {
@@ -146,7 +143,6 @@ xdr_replymsg (XDR *xdrs, struct rpc_msg *rmsg)
 		      NULL_xdrproc_t);
   return FALSE;
 }
-libc_hidden_def(xdr_replymsg)
 
 
 /*
@@ -169,7 +165,6 @@ xdr_callhdr (XDR *xdrs, struct rpc_msg *cmsg)
     return xdr_u_long (xdrs, &(cmsg->rm_call.cb_vers));
   return FALSE;
 }
-libc_hidden_def(xdr_callhdr)
 
 /* ************************** Client utility routine ************* */
 
@@ -279,4 +274,3 @@ _seterr_reply (struct rpc_msg *msg,
       break;
     }
 }
-libc_hidden_def(_seterr_reply)

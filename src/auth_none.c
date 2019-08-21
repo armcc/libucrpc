@@ -102,7 +102,6 @@ authnone_create (void)
 #endif
   return &authnone_private.no_client;
 }
-libc_hidden_def(authnone_create)
 
 static bool_t
 authnone_marshal (AUTH *client, XDR *xdrs)

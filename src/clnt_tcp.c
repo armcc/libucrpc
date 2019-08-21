@@ -220,7 +220,6 @@ fooy:
   mem_free ((caddr_t) h, sizeof (CLIENT));
   return ((CLIENT *) NULL);
 }
-libc_hidden_def(clnttcp_create)
 
 static enum clnt_stat
 clnttcp_call (CLIENT *h, u_long proc, xdrproc_t xdr_args, caddr_t args_ptr,

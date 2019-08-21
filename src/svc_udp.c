@@ -180,7 +180,6 @@ svcudp_bufcreate (int sock, u_int sendsz, u_int recvsz)
   xprt_register (xprt);
   return xprt;
 }
-libc_hidden_def(svcudp_bufcreate)
 
 SVCXPRT *
 svcudp_create (int sock)
@@ -188,7 +187,6 @@ svcudp_create (int sock)
 
   return svcudp_bufcreate (sock, UDPMSGSIZE, UDPMSGSIZE);
 }
-libc_hidden_def(svcudp_create)
 
 static enum xprt_stat
 svcudp_stat (SVCXPRT *xprt attribute_unused)

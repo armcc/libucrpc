@@ -157,7 +157,3 @@ int * __rpc_thread_svc_max_pollfd (void)
 
 #endif /* __UCLIBC_HAS_THREADS__ */
 
-libc_hidden_def(__rpc_thread_svc_fdset)
-libc_hidden_def(__rpc_thread_createerr)
-libc_hidden_def(__rpc_thread_svc_pollfd)
-libc_hidden_def(__rpc_thread_svc_max_pollfd)

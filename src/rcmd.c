@@ -302,7 +302,6 @@ int rresvport(int *alport)
 
     return -1;
 }
-libc_hidden_def(rresvport)
 
 /* This needs to be exported ... while it is not a documented interface
  * for rcp related apps, it's a required one that is used to control the

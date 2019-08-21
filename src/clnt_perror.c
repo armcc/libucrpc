@@ -182,7 +182,6 @@ clnt_sperrno (enum clnt_stat stat)
     }
   return "RPC: (unknown error code)";
 }
-libc_hidden_def(clnt_sperrno)
 
 void
 clnt_perrno (enum clnt_stat num)
@@ -276,14 +275,12 @@ clnt_sperror (CLIENT * rpch, const char *msg)
   *++str = '\0';
   return (strstart);
 }
-libc_hidden_def(clnt_sperror)
 
 void
 clnt_perror (CLIENT * rpch, const char *msg)
 {
   (void) fputs (clnt_sperror (rpch, msg), stderr);
 }
-libc_hidden_def(clnt_perror)
 
 char *
 clnt_spcreateerror (const char *msg)
@@ -328,7 +325,6 @@ clnt_spcreateerror (const char *msg)
   *++cp = '\0';
   return str;
 }
-libc_hidden_def(clnt_spcreateerror)
 
 void
 clnt_pcreateerror (const char *msg)

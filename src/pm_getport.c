@@ -103,4 +103,3 @@ pmap_getport (struct sockaddr_in *address, u_long program, u_long version,
   address->sin_port = 0;
   return port;
 }
-libc_hidden_def(pmap_getport)

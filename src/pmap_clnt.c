@@ -140,7 +140,6 @@ pmap_set (u_long program, u_long version, int protocol, u_short port)
   /* (void)close(_socket); CLNT_DESTROY closes it */
   return rslt;
 }
-libc_hidden_def (pmap_set)
 
 /*
  * Remove the mapping between program,version and port.
@@ -170,4 +169,3 @@ pmap_unset (u_long program, u_long version)
   /* (void)close(_socket); CLNT_DESTROY already closed it */
   return rslt;
 }
-libc_hidden_def (pmap_unset)

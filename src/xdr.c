@@ -81,7 +81,6 @@ xdr_void (void)
 {
   return TRUE;
 }
-libc_hidden_def(xdr_void)
 
 /*
  * XDR long integers
@@ -104,7 +103,6 @@ xdr_long (XDR *xdrs, long *lp)
 
   return FALSE;
 }
-libc_hidden_def(xdr_long)
 
 /*
  * XDR short integers
@@ -133,7 +131,6 @@ xdr_short (XDR *xdrs, short *sp)
     }
   return FALSE;
 }
-libc_hidden_def(xdr_short)
 
 /*
  * XDR integers
@@ -169,7 +166,6 @@ xdr_int (XDR *xdrs, int *ip)
 #error unexpected integer sizes in xdr_int()
 #endif
 }
-libc_hidden_def(xdr_int)
 
 /*
  * XDR unsigned long integers
@@ -204,7 +200,6 @@ xdr_u_long (XDR *xdrs, u_long *ulp)
     }
   return FALSE;
 }
-libc_hidden_def(xdr_u_long)
 
 /*
  * XDR unsigned integers
@@ -239,7 +234,6 @@ xdr_u_int (XDR *xdrs, u_int *up)
 #error unexpected integer sizes in xdr_u_int()
 #endif
 }
-libc_hidden_def(xdr_u_int)
 
 /*
  * XDR hyper integers
@@ -273,7 +267,6 @@ xdr_hyper (XDR *xdrs, quad_t *llp)
 
   return FALSE;
 }
-libc_hidden_def(xdr_hyper)
 
 
 /*
@@ -307,7 +300,6 @@ xdr_u_hyper (XDR *xdrs, u_quad_t *ullp)
 
   return FALSE;
 }
-libc_hidden_def(xdr_u_hyper)
 
 bool_t
 xdr_longlong_t (XDR *xdrs, quad_t *llp)
@@ -348,7 +340,6 @@ xdr_u_short (XDR *xdrs, u_short *usp)
     }
   return FALSE;
 }
-libc_hidden_def(xdr_u_short)
 
 
 /*
@@ -412,7 +403,6 @@ xdr_bool (XDR *xdrs, bool_t *bp)
     }
   return FALSE;
 }
-libc_hidden_def(xdr_bool)
 
 /*
  * XDR enumerations
@@ -463,7 +453,6 @@ xdr_enum (XDR *xdrs, enum_t *ep)
       return FALSE;
     }
 }
-libc_hidden_def(xdr_enum)
 
 /*
  * XDR opaque data
@@ -514,7 +503,6 @@ xdr_opaque (XDR *xdrs, caddr_t cp, u_int cnt)
     }
   return FALSE;
 }
-libc_hidden_def(xdr_opaque)
 
 /*
  * XDR counted bytes
@@ -574,7 +562,6 @@ xdr_bytes (XDR *xdrs, char **cpp, u_int *sizep, u_int maxsize)
     }
   return FALSE;
 }
-libc_hidden_def(xdr_bytes)
 
 /*
  * Implemented here due to commonality of the object.
@@ -627,7 +614,6 @@ xdr_union (XDR *xdrs, enum_t *dscmp, char *unp, const struct xdr_discrim *choice
   return ((dfault == NULL_xdrproc_t) ? FALSE :
 	  (*dfault) (xdrs, unp, LASTUNSIGNED));
 }
-libc_hidden_def(xdr_union)
 
 /*
  * Non-portable xdr primitives.
@@ -709,7 +695,6 @@ xdr_string (XDR *xdrs, char **cpp, u_int maxsize)
     }
   return FALSE;
 }
-libc_hidden_def(xdr_string)
 
 /*
  * Wrapper for xdr_string that can be called directly from

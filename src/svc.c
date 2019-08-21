@@ -115,7 +115,6 @@ xprt_register (SVCXPRT *xprt)
 					       POLLRDNORM | POLLRDBAND);
     }
 }
-libc_hidden_def(xprt_register)
 
 /* De-activate a transport handle. */
 void
@@ -136,7 +135,6 @@ xprt_unregister (SVCXPRT *xprt)
 	  svc_pollfd[i].fd = -1;
     }
 }
-libc_hidden_def(xprt_unregister)
 
 
 /* ********************** CALLOUT list related stuff ************* */
@@ -194,7 +192,6 @@ pmap_it:
 
   return TRUE;
 }
-libc_hidden_def(svc_register)
 
 /* Remove a service program from the callout list. */
 void
@@ -216,7 +213,6 @@ svc_unregister (rpcprog_t prog, rpcvers_t vers)
   /* now unregister the information with the local binder service */
   pmap_unset (prog, vers);
 }
-libc_hidden_def(svc_unregister)
 
 /* ******************* REPLY GENERATION ROUTINES  ************ */
 
@@ -235,7 +231,6 @@ svc_sendreply (register SVCXPRT *xprt, xdrproc_t xdr_results,
   rply.acpted_rply.ar_results.proc = xdr_results;
   return SVC_REPLY (xprt, &rply);
 }
-libc_hidden_def(svc_sendreply)
 
 /* No procedure error reply */
 void
@@ -262,7 +257,6 @@ svcerr_decode (register SVCXPRT *xprt)
   rply.acpted_rply.ar_stat = GARBAGE_ARGS;
   SVC_REPLY (xprt, &rply);
 }
-libc_hidden_def(svcerr_decode)
 
 /* Some system error */
 void
@@ -289,7 +283,6 @@ svcerr_auth (SVCXPRT *xprt, enum auth_stat why)
   rply.rjcted_rply.rj_why = why;
   SVC_REPLY (xprt, &rply);
 }
-libc_hidden_def(svcerr_auth)
 
 /* Auth too weak error reply */
 void
@@ -310,7 +303,6 @@ svcerr_noprog (register SVCXPRT *xprt)
   rply.acpted_rply.ar_stat = PROG_UNAVAIL;
   SVC_REPLY (xprt, &rply);
 }
-libc_hidden_def(svcerr_noprog)
 
 /* Program version mismatch error reply */
 void
@@ -327,7 +319,6 @@ svcerr_progvers (register SVCXPRT *xprt, rpcvers_t low_vers,
   rply.acpted_rply.ar_vers.high = high_vers;
   SVC_REPLY (xprt, &rply);
 }
-libc_hidden_def(svcerr_progvers)
 
 /* ******************* SERVER INPUT STUFF ******************* */
 
@@ -436,7 +427,6 @@ svc_getreq_common (const int fd)
     }
   while (stat == XPRT_MOREREQS);
 }
-libc_hidden_def(svc_getreq_common)
 
 void
 svc_getreqset (fd_set *readfds)
@@ -455,7 +445,6 @@ svc_getreqset (fd_set *readfds)
     for (mask = *maskp++; (bit = ffs (mask)); mask ^= (1 << (bit - 1)))
       svc_getreq_common (sock + bit - 1);
 }
-libc_hidden_def(svc_getreqset)
 
 void
 svc_getreq (int rdfds)
@@ -466,7 +455,6 @@ svc_getreq (int rdfds)
   readfds.fds_bits[0] = rdfds;
   svc_getreqset (&readfds);
 }
-libc_hidden_def(svc_getreq)
 
 void
 svc_getreq_poll (struct pollfd *pfdp, int pollretval)
@@ -490,7 +478,6 @@ svc_getreq_poll (struct pollfd *pfdp, int pollretval)
 	}
     }
 }
-libc_hidden_def(svc_getreq_poll)
 
 #ifdef __UCLIBC_HAS_THREADS__
 

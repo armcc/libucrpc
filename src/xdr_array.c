@@ -124,7 +124,6 @@ xdr_array (XDR *xdrs, caddr_t *addrp, u_int *sizep, u_int maxsize, u_int elsize,
     }
   return stat;
 }
-libc_hidden_def(xdr_array)
 
 /*
  * xdr_vector():

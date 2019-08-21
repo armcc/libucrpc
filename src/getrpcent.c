@@ -87,7 +87,6 @@ void endrpcent(void)
 		d->rpcf = NULL;
 	}
 }
-libc_hidden_def(endrpcent)
 
 void setrpcent(int f)
 {
@@ -103,7 +102,6 @@ void setrpcent(int f)
 	d->current = NULL;
 	d->stayopen |= f;
 }
-libc_hidden_def(setrpcent)
 
 static struct rpcent *interpret(struct rpcdata *);
 
@@ -124,7 +122,6 @@ struct rpcent *getrpcent(void)
 		return NULL;
 	return __get_next_rpcent(d);
 }
-libc_hidden_def(getrpcent)
 
 struct rpcent *getrpcbynumber(register int number)
 {
@@ -141,7 +138,6 @@ struct rpcent *getrpcbynumber(register int number)
 	endrpcent();
 	return rpc;
 }
-libc_hidden_def(getrpcbynumber)
 
 struct rpcent *getrpcbyname(const char *name)
 {
@@ -160,7 +156,6 @@ struct rpcent *getrpcbyname(const char *name)
 	endrpcent();
 	return NULL;
 }
-libc_hidden_def(getrpcbyname)
 
 #ifdef __linux__
 static char *firstwhite(char *s)

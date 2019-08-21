@@ -49,4 +49,3 @@ _rpc_dtablesize(void)
 
   return size;
 }
-libc_hidden_def(_rpc_dtablesize)

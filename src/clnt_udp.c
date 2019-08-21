@@ -204,7 +204,6 @@ fooy:
     mem_free ((caddr_t) cl, sizeof (CLIENT));
   return (CLIENT *) NULL;
 }
-libc_hidden_def(clntudp_bufcreate)
 
 CLIENT *
 clntudp_create (struct sockaddr_in *raddr, u_long program, u_long version, struct timeval _wait, int *sockp)
@@ -213,7 +212,6 @@ clntudp_create (struct sockaddr_in *raddr, u_long program, u_long version, struc
   return clntudp_bufcreate (raddr, program, version, _wait, sockp,
 			    UDPMSGSIZE, UDPMSGSIZE);
 }
-libc_hidden_def(clntudp_create)
 
 static int
 is_network_up (int sock)

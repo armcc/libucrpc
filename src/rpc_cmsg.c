@@ -202,4 +202,3 @@ xdr_callmsg (XDR *xdrs, struct rpc_msg *cmsg)
     return xdr_opaque_auth (xdrs, &(cmsg->rm_call.cb_verf));
   return FALSE;
 }
-libc_hidden_def(xdr_callmsg)

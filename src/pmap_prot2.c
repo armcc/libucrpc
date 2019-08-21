@@ -114,4 +114,3 @@ xdr_pmaplist (XDR *xdrs, struct pmaplist **rp)
       rp = freeing ? next : &((*rp)->pml_next);
     }
 }
-libc_hidden_def(xdr_pmaplist)

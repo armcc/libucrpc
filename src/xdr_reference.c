@@ -90,7 +90,6 @@ xdr_reference (XDR *xdrs, caddr_t *pp, u_int size, xdrproc_t proc)
     }
   return stat;
 }
-libc_hidden_def(xdr_reference)
 
 /*
  * xdr_pointer():

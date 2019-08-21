@@ -132,7 +132,6 @@ xdr_rmtcall_args (XDR *xdrs, struct rmtcallargs *cap)
     }
   return FALSE;
 }
-libc_hidden_def(xdr_rmtcall_args)
 
 /*
  * XDR remote call results
@@ -152,7 +151,6 @@ xdr_rmtcallres (XDR *xdrs, struct rmtcallres *crp)
     }
   return FALSE;
 }
-libc_hidden_def(xdr_rmtcallres)
 
 
 /*
